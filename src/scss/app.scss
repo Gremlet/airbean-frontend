@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Work+Sans:wght@400;600;700&display=swap');
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    font-family: 'PT Serif', serif;
+}
+
+p {
+    font-family: 'Work Sans', sans-serif;
+}
+
+.App {
+    background-color: orange;
+    width: 375px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 667px;
+    position: relative;
+}
+
+.header {
+    position: relative;
+}
+
+.circle {
+    position: absolute;
+    top: 0px;
+    left: 5px;
+}
+
+.menu-icon {
+    position: absolute;
+    top: 2px;
+    left: 29px;
+}

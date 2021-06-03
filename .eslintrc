@@ -1,0 +1,13 @@
+{
+    "extends": ["react-app", "react-app/jest"],
+    "plugins": ["react"],
+    "rules": {
+        "react/self-closing-comp": [
+            "warn",
+            {
+                "component": true,
+                "html": false
+            }
+        ]
+    }
+}
