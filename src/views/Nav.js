@@ -1,6 +1,6 @@
 import '../scss/nav.scss'
 import { MdClose } from 'react-icons/md'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 
 function Nav() {
     const history = useHistory()
@@ -23,7 +23,9 @@ function Nav() {
                 <hr />
                 <h1>Our Coffee</h1>
                 <hr />
-                <h1>My Profile</h1>
+                <Link to="/profile" className="link-text">
+                    <h1>My Profile</h1>
+                </Link>
                 <hr />
                 <h1>Order Status</h1>
             </div>

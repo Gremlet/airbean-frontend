@@ -3,6 +3,7 @@ import logo from '../assets/airbean-logo.svg'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addUser } from '../redux/actions.js'
+import { useHistory } from 'react-router-dom'
 
 function Login() {
     let [username, setUsername] = useState('')
@@ -13,6 +14,7 @@ function Login() {
     const handlePassword = (event) => setPassword(event.target.value)
 
     const dispatch = useDispatch()
+    const history = useHistory()
 
     async function userLogin(event) {
         event.preventDefault()
@@ -32,11 +34,9 @@ function Login() {
     useEffect(() => {
         if (isLoggedIn) {
             console.log('This is where we push to profile page')
+            history.push('/profile')
         }
-        if (isLoggedIn === false) {
-            console.log('an error message')
-        }
-    }, [isLoggedIn])
+    }, [isLoggedIn, history])
 
     return (
         <div className="login">

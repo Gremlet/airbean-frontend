@@ -2,3 +2,16 @@ $brown: #2f2926;
 $dark-green: #0e927d;
 $pink: #f3e4e1;
 $orange: #e5674e;
+
+.profile {
+    text-align: center;
+
+    .username {
+        color: white;
+        margin-bottom: 5px;
+    }
+    .email {
+        color: rgba(255, 255, 255, 0.8);
+        margin-top: 5px;
+    }
+}
