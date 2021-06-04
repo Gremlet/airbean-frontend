@@ -1,0 +1,37 @@
+$brown: #2f2926;
+$dark-green: #0e927d;
+$pink: #f3e4e1;
+$orange: #e5674e;
+
+.nav-menu {
+    width: 375px;
+    min-height: 667px;
+    background-color: $brown;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .circle-close {
+        position: absolute;
+        top: 0px;
+        left: 5px;
+    }
+
+    .close-icon {
+        position: absolute;
+        top: 2px;
+        left: 29px;
+    }
+
+    .nav-links {
+        color: white;
+        text-align: center;
+
+        hr {
+            width: 25%;
+            opacity: 20%;
+        }
+    }
+}

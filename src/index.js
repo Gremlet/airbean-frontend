@@ -2,10 +2,20 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './scss/app.scss'
 import App from './App'
+import { BrowserRouter } from 'react-router-dom'
+import { createStore } from 'redux'
+import userReducer from './redux/reducer.js'
+import { Provider } from 'react-redux'
 
+// Store
+const store = createStore(userReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <BrowserRouter>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
 )

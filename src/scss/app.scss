@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Work+Sans:wght@400;600;700&display=swap');
+// @import '~bootstrap/scss/bootstrap';
+
+$brown: #2f2926;
+$dark-green: #0e927d;
+$pink: #f3e4e1;
+$orange: #e5674e;
+
 body {
     display: flex;
     justify-content: center;
@@ -15,7 +22,7 @@ p {
 }
 
 .App {
-    background-color: orange;
+    background-color: $brown;
     width: 375px;
     padding-bottom: 20px;
     display: flex;

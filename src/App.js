@@ -1,23 +1,26 @@
 import './scss/app.scss'
-import header from './assets/header.svg'
-import { MdMenu } from 'react-icons/md'
+
 import Login from './components/Login'
+import { Route, Switch } from 'react-router-dom'
+import Header from './components/Header'
+import Nav from './views/Nav'
+import Profile from './views/Profile'
 
 function App() {
     return (
         <div className="App">
-            <div className="header">
-                <img src={header} alt="header-img" />
-                <svg className="circle" height="80" width="80">
-                    <circle cx="40" cy="40" r="24" fill="white" />
-                </svg>
-                <div className="menu-icon">
-                    <h1>
-                        <MdMenu />
-                    </h1>
-                </div>
-            </div>
-            <Login />
+            <Header />
+            <Switch>
+                <Route exact path="/">
+                    <Login />
+                </Route>
+                <Route path="/nav">
+                    <Nav />
+                </Route>
+                <Route path="/profile">
+                    <Profile />
+                </Route>
+            </Switch>
         </div>
     )
 }

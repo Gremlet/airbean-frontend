@@ -1,6 +1,11 @@
+$brown: #2f2926;
+$dark-green: #0e927d;
+$pink: #f3e4e1;
+$orange: #e5674e;
+
 .login {
     width: 341px;
-    background-color: #f3e4e1;
+    background-color: $pink;
     align-self: center;
     justify-self: center;
     text-align: center;
@@ -42,7 +47,7 @@
             font-family: 'PT serif', serif;
             font-size: large;
             font-weight: 700;
-            background-color: #2f2926;
+            background-color: $brown;
             color: white;
             width: 60%;
             border-radius: 50px;
@@ -51,8 +56,13 @@
             left: 70px;
 
             &:hover {
-                background-color: #4b413c;
+                background-color: #000000;
             }
+        }
+        .errMsg {
+            color: red;
+            font-size: 0.75em;
+            margin-left: 10px;
         }
     }
 }
