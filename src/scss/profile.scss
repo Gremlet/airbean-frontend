@@ -4,14 +4,59 @@ $pink: #f3e4e1;
 $orange: #e5674e;
 
 .profile {
+    color: white;
     text-align: center;
 
     .username {
-        color: white;
         margin-bottom: 5px;
     }
     .email {
         color: rgba(255, 255, 255, 0.8);
         margin-top: 5px;
+    }
+
+    .order-history {
+        text-align: left;
+        padding: 20px;
+
+        .order-container {
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.801);
+            display: grid;
+            grid-template-areas:
+                'orderno date'
+                'total price'
+                'line line';
+
+            > p {
+                margin: 5px;
+            }
+
+            .orderno {
+                grid-area: orderno;
+                font-weight: 700;
+            }
+            .date {
+                grid-area: date;
+                justify-self: end;
+            }
+            .total-text {
+                grid-area: total;
+            }
+            .price {
+                grid-area: price;
+                justify-self: end;
+            }
+            .line {
+                grid-area: line;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.322);
+            }
+        }
+        .total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.8);
+        }
     }
 }

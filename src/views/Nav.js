@@ -2,11 +2,15 @@ import '../scss/nav.scss'
 import { MdClose } from 'react-icons/md'
 import { useHistory, Link } from 'react-router-dom'
 
-function Nav() {
+function Nav(props) {
     const history = useHistory()
 
     function goBack() {
         history.goBack()
+    }
+
+    function changeColor(color) {
+        props.updateColor(color)
     }
     return (
         <div className="nav-menu">
@@ -21,9 +25,11 @@ function Nav() {
             <div className="nav-links">
                 <h1>Menu</h1>
                 <hr />
-                <h1>Our Coffee</h1>
+                <Link to="/about" className="link-text" onClick={() => changeColor('#f3e4e1')}>
+                    <h1>Our Coffee</h1>
+                </Link>
                 <hr />
-                <Link to="/profile" className="link-text">
+                <Link to="/profile" className="link-text" onClick={() => changeColor('#2f2926')}>
                     <h1>My Profile</h1>
                 </Link>
                 <hr />
