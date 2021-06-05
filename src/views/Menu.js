@@ -4,6 +4,7 @@ import footer from '../assets/footer.svg'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../redux/actions'
+import Cart from '../components/Cart'
 
 function Menu() {
     const [menu, setMenu] = useState(() => [])
@@ -25,6 +26,7 @@ function Menu() {
     }, [])
     return (
         <div className="menu">
+            <Cart />
             <h1 className="menu-title">Menu</h1>
             {menu &&
                 menu.map((menuItem) => {
