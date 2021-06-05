@@ -49,7 +49,7 @@ function Profile() {
                         )
                     })}
                 <div className="total">
-                    <p className="spent">Total Spent</p>
+                    <p className="spent">Total spent</p>
                     <p className="grandtotal">{totalSpent} kr</p>
                 </div>
             </div>

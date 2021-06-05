@@ -32,8 +32,9 @@ $orange: #e5674e;
 
         input[type='text'],
         [type='password'] {
-            border: none;
-            padding: 8px;
+            border: 1px $brown solid;
+            background-color: $pink;
+            padding: 10px;
             border-radius: 4px;
             width: 90%;
             text-align: left;

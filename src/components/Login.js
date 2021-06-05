@@ -44,7 +44,7 @@ function Login() {
                 <img src={logo} alt="airbean-logo" />
             </div>
             <h1>Welcome to the AirBean family!</h1>
-            <p>Login below to see your order history</p>
+            <p>Login below to order some coffee and see your order history</p>
             <div className="login-form">
                 <form action="" onSubmit={userLogin}>
                     <label htmlFor="username">Username</label>
