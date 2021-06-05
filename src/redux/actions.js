@@ -4,3 +4,10 @@ export const addUser = (user) => {
         payload: user,
     }
 }
+
+export const addToCart = (item) => {
+    return {
+        type: 'ADD_TO_CART',
+        payload: item,
+    }
+}

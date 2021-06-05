@@ -10,6 +10,11 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 currentUser: action.payload,
             }
+        case 'ADD_TO_CART':
+            return {
+                ...state,
+                cart: [...state.cart, action.payload],
+            }
         default:
             return state
     }

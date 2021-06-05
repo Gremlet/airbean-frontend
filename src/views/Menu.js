@@ -2,9 +2,17 @@ import '../scss/menu.scss'
 import { MdAddCircle } from 'react-icons/md'
 import footer from '../assets/footer.svg'
 import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../redux/actions'
 
 function Menu() {
     const [menu, setMenu] = useState(() => [])
+    const dispatch = useDispatch()
+
+    function addItem(menuItem) {
+        dispatch(addToCart(menuItem))
+        console.log(menuItem)
+    }
 
     useEffect(() => {
         async function fetchMenu() {
@@ -22,12 +30,7 @@ function Menu() {
                 menu.map((menuItem) => {
                     return (
                         <div key={menuItem.id} className="menu-container">
-                            <button
-                                className="add"
-                                onClick={() => {
-                                    console.log('clicky on the', menuItem.title)
-                                }}
-                            >
+                            <button className="add" onClick={() => addItem(menuItem)}>
                                 <MdAddCircle />
                             </button>
                             <h3 className="coffee">{menuItem.title}</h3>
