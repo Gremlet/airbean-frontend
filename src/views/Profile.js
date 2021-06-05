@@ -35,13 +35,13 @@ function Profile() {
             <h1 className="username">{currentUser.fullname}</h1>
             <p className="email">{currentUser.email}</p>
             <div className="order-history">
-                <h1>Order history</h1>
+                <h2>Order history</h2>
                 {history &&
                     history.map((item) => {
                         return (
                             <div key={item.orderNumber} className="order-container">
                                 <p className="orderno">ORDER # {item.orderNumber}</p>
-                                <p className="date">{dayjs(item.ETA).format('YYYY-M-D')}</p>
+                                <p className="date">{dayjs(item.ETA).format('YYYY/MM/DD')}</p>
                                 <p className="total">Total price</p>
                                 <p className="price">{item.price} kr</p>
                                 <div className="line"></div>
