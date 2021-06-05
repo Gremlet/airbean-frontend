@@ -10,6 +10,8 @@ function Header() {
         return state.currentUser
     })
 
+    // I wonder about conditionally rendering the cart icon?
+
     // Check if redux store object is empty
     function isEmpty(obj) {
         for (let key in obj) {
