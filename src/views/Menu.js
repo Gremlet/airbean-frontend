@@ -22,9 +22,14 @@ function Menu() {
                 menu.map((menuItem) => {
                     return (
                         <div key={menuItem.id} className="menu-container">
-                            <h1 className="add">
+                            <button
+                                className="add"
+                                onClick={() => {
+                                    console.log('clicky on the', menuItem.title)
+                                }}
+                            >
                                 <MdAddCircle />
-                            </h1>
+                            </button>
                             <h3 className="coffee">{menuItem.title}</h3>
                             <p className="desc">{menuItem.desc}</p>
                             <h3 className="coffee-price">{menuItem.price} kr</h3>

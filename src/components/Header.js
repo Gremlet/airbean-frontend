@@ -24,6 +24,7 @@ function Header() {
 
     function handleClick() {
         if (isEmpty(currentUser) || currentUser.loggedIn === false) {
+            // remember to change this alert. Alerts are shitty.
             alert('Please log in!')
         } else {
             history.push('/nav')
@@ -32,6 +33,7 @@ function Header() {
     return (
         <div className="header">
             <img src={header} alt="header-img" />
+
             <svg className="circle" height="80" width="80">
                 <circle cx="40" cy="40" r="24" fill="white" />
             </svg>

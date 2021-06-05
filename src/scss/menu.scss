@@ -14,8 +14,14 @@
     }
     .add {
         grid-area: add;
+        background: none;
+        border: none;
+        font-size: 2em;
         align-self: center;
         margin: 0;
+        &:hover {
+            cursor: pointer;
+        }
     }
     .coffee {
         grid-area: coffee;
