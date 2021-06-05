@@ -7,6 +7,7 @@ import Nav from './views/Nav'
 import Profile from './views/Profile'
 import { useState } from 'react'
 import About from './views/About'
+import Menu from './views/Menu'
 
 function App() {
     let [bgColor, setBgColor] = useState('#2f2926')
@@ -28,6 +29,9 @@ function App() {
                 </Route>
                 <Route path="/about">
                     <About />
+                </Route>
+                <Route path="/menu">
+                    <Menu />
                 </Route>
             </Switch>
         </div>

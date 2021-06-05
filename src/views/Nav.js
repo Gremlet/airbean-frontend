@@ -23,7 +23,9 @@ function Nav(props) {
                 </h1>
             </div>
             <div className="nav-links">
-                <h1>Menu</h1>
+                <Link to="/menu" className="link-text" onClick={() => changeColor('#f3e4e1')}>
+                    <h1>Menu</h1>
+                </Link>
                 <hr />
                 <Link to="/about" className="link-text" onClick={() => changeColor('#f3e4e1')}>
                     <h1>Our Coffee</h1>

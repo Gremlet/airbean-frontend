@@ -1,5 +1,6 @@
 const initialState = {
     currentUser: {},
+    cart: [],
 }
 
 const userReducer = (state = initialState, action) => {

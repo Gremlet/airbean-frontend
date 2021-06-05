@@ -1,0 +1,43 @@
+.menu {
+    min-height: 744px;
+    .menu-title {
+        text-align: center;
+    }
+    .menu-container {
+        display: grid;
+        padding: 0px 16px 0px 16px;
+        grid-auto-rows: minmax(16px, auto);
+        grid-auto-columns: 50px auto auto;
+        grid-template-areas:
+            'add coffee coffee-price'
+            'add desc desc';
+    }
+    .add {
+        grid-area: add;
+        align-self: center;
+        margin: 0;
+    }
+    .coffee {
+        grid-area: coffee;
+        margin: 0;
+        align-self: end;
+        justify-self: start;
+    }
+    .coffee-price {
+        grid-area: coffee-price;
+        align-self: end;
+        justify-self: end;
+        margin-bottom: 0;
+    }
+    .desc {
+        grid-area: desc;
+        font-size: 0.75em;
+        margin-top: 5px;
+        align-self: start;
+        justify-self: start;
+    }
+    .footer {
+        position: absolute;
+        bottom: 0;
+    }
+}
