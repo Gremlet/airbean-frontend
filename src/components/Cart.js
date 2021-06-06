@@ -2,7 +2,7 @@ import { MdShoppingCart } from 'react-icons/md'
 import '../scss/cart.scss'
 import { useSelector } from 'react-redux'
 import Badge from '@material-ui/core/Badge'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { MdKeyboardArrowUp, MdKeyboardArrowDown, MdDelete } from 'react-icons/md'
 
 function Cart() {
@@ -15,10 +15,23 @@ function Cart() {
     })
 
     const [showCart, setShowCart] = useState(false)
+    const [cartLength, setCartLength] = useState(0)
 
     const toggleCart = () => {
         setShowCart(!showCart)
     }
+
+    useEffect(() => {
+        function getCartLength() {
+            let badge = 0
+            for (let i = 0; i < cart.length; i++) {
+                badge = badge + cart[i].quantity
+            }
+
+            setCartLength(badge)
+        }
+        getCartLength()
+    }, [cart])
 
     return (
         <div className="cart">
@@ -28,7 +41,7 @@ function Cart() {
 
             <div className="cart-icon" onClick={toggleCart}>
                 <h1>
-                    <Badge color="secondary" badgeContent={cart.length}>
+                    <Badge color="secondary" badgeContent={cartLength}>
                         <MdShoppingCart style={{ color: 'white' }} />
                     </Badge>
                 </h1>
