@@ -34,7 +34,7 @@ function Cart() {
                 <div className="cart-card">
                     <h1>I'm a cart!</h1>
                     {cart.map((item) => {
-                        return <p key={item.quantity}>{item.title}</p>
+                        return <p key={item.id}>{item.title}</p>
                     })}
                 </div>
             )}

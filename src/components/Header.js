@@ -3,7 +3,6 @@ import { MdMenu } from 'react-icons/md'
 import '../scss/app.scss'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-
 import ReactTooltip from 'react-tooltip'
 
 function Header() {
@@ -12,18 +11,8 @@ function Header() {
         return state.currentUser
     })
 
-    // Check if redux store object is empty
-    function isEmpty(obj) {
-        for (let key in obj) {
-            if (obj.hasOwnProperty(key)) {
-                return false
-            }
-        }
-        return true
-    }
-
     function handleClick() {
-        if (!isEmpty(currentUser) || currentUser.loggedIn === true) {
+        if (currentUser.loggedIn === true) {
             history.push('/nav')
         } else {
             console.log('not logged in')
