@@ -11,6 +11,7 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 currentUser: action.payload,
             }
+
         case 'ADD_TO_CART':
             let addedItem = action.payload
             let existingItem = state.cart.find((item) => item.id === addedItem.id)
@@ -29,6 +30,44 @@ const userReducer = (state = initialState, action) => {
                     cart: [...state.cart, addedItem],
                     total: newTotal,
                 }
+            }
+        case 'INCREMENT_ITEM':
+            let incrementItem = state.cart.find((item) => item.id === action.payload.id)
+            incrementItem.quantity = incrementItem.quantity + 1
+            let incTotal = state.total + incrementItem.price
+            return {
+                ...state,
+                total: incTotal,
+            }
+
+        case 'DECREMENT_ITEM':
+            let decrementItem = state.cart.find((item) => item.id === action.payload.id)
+            if (decrementItem.quantity === 1) {
+                let remainingItems = state.cart.filter((item) => item.id !== action.payload.id)
+                let decTotal = state.total - decrementItem.price
+                return {
+                    ...state,
+                    cart: remainingItems,
+                    total: decTotal,
+                }
+            } else {
+                decrementItem.quantity = decrementItem.quantity - 1
+                let decTotal = state.total - decrementItem.price
+                return {
+                    ...state,
+                    total: decTotal,
+                }
+            }
+
+        case 'REMOVE_ITEM':
+            let itemToRemove = state.cart.find((item) => item.id === action.payload.id)
+            let remainingItems = state.cart.filter((item) => item.id !== action.payload.id)
+            let newTotal = state.total - itemToRemove.price * itemToRemove.quantity
+
+            return {
+                ...state,
+                cart: remainingItems,
+                total: newTotal,
             }
 
         default:

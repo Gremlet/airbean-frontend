@@ -11,3 +11,24 @@ export const addToCart = (id, title, price, quantity) => {
         payload: { id, title, price, quantity },
     }
 }
+
+export const increment = (id, quantity, price) => {
+    return {
+        type: 'INCREMENT_ITEM',
+        payload: { id, quantity, price },
+    }
+}
+
+export const decrement = (id, quantity, price) => {
+    return {
+        type: 'DECREMENT_ITEM',
+        payload: { id, quantity, price },
+    }
+}
+
+export const removeItem = (id, quantity, price) => {
+    return {
+        type: 'REMOVE_ITEM',
+        payload: { id, quantity, price },
+    }
+}

@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux'
 import Badge from '@material-ui/core/Badge'
 import { useEffect, useState } from 'react'
 import { MdKeyboardArrowUp, MdKeyboardArrowDown, MdDelete } from 'react-icons/md'
+import { increment, decrement, removeItem } from '../redux/actions'
+import { useDispatch } from 'react-redux'
 
 function Cart() {
     const cart = useSelector((state) => {
@@ -14,11 +16,25 @@ function Cart() {
         return state.total
     })
 
+    const dispatch = useDispatch()
+
     const [showCart, setShowCart] = useState(false)
     const [cartLength, setCartLength] = useState(0)
 
     const toggleCart = () => {
         setShowCart(!showCart)
+    }
+
+    function increaseQty(id, quantity, price) {
+        dispatch(increment(id, quantity, price))
+    }
+
+    function decreaseQty(id, quantity, price) {
+        dispatch(decrement(id, quantity, price))
+    }
+
+    function deleteItem(id, quantity, price) {
+        dispatch(removeItem(id, quantity, price))
     }
 
     useEffect(() => {
@@ -30,8 +46,9 @@ function Cart() {
 
             setCartLength(badge)
         }
+
         getCartLength()
-    }, [cart])
+    }, [cart, cartTotal])
 
     return (
         <div className="cart">
@@ -57,14 +74,23 @@ function Cart() {
                             <div className="cart-item" key={item.id}>
                                 <h3 className="cart-item-title">{item.title}</h3>
                                 <p className="cart-price">{item.price} kr</p>
-                                <button className="remove">
+                                <button
+                                    className="remove"
+                                    onClick={() => deleteItem(item.id, item.quantity, item.price)}
+                                >
                                     <MdDelete style={{ color: '#e5674e' }} />
                                 </button>
-                                <button className="increase">
+                                <button
+                                    className="increase"
+                                    onClick={() => increaseQty(item.id, item.quantity, item.price)}
+                                >
                                     <MdKeyboardArrowUp />
                                 </button>
                                 <p className="cart-item-quantity">{item.quantity}</p>
-                                <button className="decrease">
+                                <button
+                                    className="decrease"
+                                    onClick={() => decreaseQty(item.id, item.quantity, item.price)}
+                                >
                                     <MdKeyboardArrowDown />
                                 </button>
                             </div>
