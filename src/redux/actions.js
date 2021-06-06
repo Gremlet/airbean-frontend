@@ -5,9 +5,9 @@ export const addUser = (user) => {
     }
 }
 
-export const addToCart = (item) => {
+export const addToCart = (id, title, price, quantity) => {
     return {
         type: 'ADD_TO_CART',
-        payload: item,
+        payload: { id, title, price, quantity },
     }
 }

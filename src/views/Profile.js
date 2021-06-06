@@ -9,6 +9,8 @@ function Profile() {
         return state.currentUser
     })
 
+    /**Could maybe have discounts here and subtract them from total spent */
+
     let [history, setHistory] = useState(null)
     let [totalSpent, setTotalSpent] = useState(0)
 

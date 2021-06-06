@@ -3,10 +3,15 @@ import '../scss/cart.scss'
 import { useSelector } from 'react-redux'
 import Badge from '@material-ui/core/Badge'
 import { useState } from 'react'
+import { MdKeyboardArrowUp, MdKeyboardArrowDown, MdDelete } from 'react-icons/md'
 
 function Cart() {
     const cart = useSelector((state) => {
         return state.cart
+    })
+
+    const cartTotal = useSelector((state) => {
+        return state.total
     })
 
     const [showCart, setShowCart] = useState(false)
@@ -14,8 +19,6 @@ function Cart() {
     const toggleCart = () => {
         setShowCart(!showCart)
     }
-
-    // might add quantity to json data if can't do it via redux
 
     return (
         <div className="cart">
@@ -32,10 +35,39 @@ function Cart() {
             </div>
             {showCart && (
                 <div className="cart-card">
-                    <h1>I'm a cart!</h1>
+                    <h1 className="cart-title">Your order</h1>
+                    {cart.length === 0 && (
+                        <p style={{ textAlign: 'center', fontSize: '0.8em' }}>Go on. Treat yourself! 🙂</p>
+                    )}
                     {cart.map((item) => {
-                        return <p key={item.id}>{item.title}</p>
+                        return (
+                            <div className="cart-item" key={item.id}>
+                                <h3 className="cart-item-title">{item.title}</h3>
+                                <p className="cart-price">{item.price} kr</p>
+                                <button className="remove">
+                                    <MdDelete style={{ color: '#e5674e' }} />
+                                </button>
+                                <button className="increase">
+                                    <MdKeyboardArrowUp />
+                                </button>
+                                <p className="cart-item-quantity">{item.quantity}</p>
+                                <button className="decrease">
+                                    <MdKeyboardArrowDown />
+                                </button>
+                            </div>
+                        )
                     })}
+                    {cart.length > 0 && (
+                        <div className="cart-total">
+                            <h2 className="c-total">Total</h2>
+                            <h2 className="c-amount">{cartTotal} kr</h2>
+                        </div>
+                    )}
+                    {cart.length > 0 && (
+                        <div className="pay">
+                            <button className="pay-button">Take my money!</button>
+                        </div>
+                    )}
                 </div>
             )}
         </div>

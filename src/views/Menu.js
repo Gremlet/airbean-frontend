@@ -10,9 +10,9 @@ function Menu() {
     const [menu, setMenu] = useState(() => [])
     const dispatch = useDispatch()
 
-    function addItem(menuItem) {
-        dispatch(addToCart(menuItem))
-        console.log(menuItem)
+    function addItem(id, title, price, quantity) {
+        dispatch(addToCart(id, title, price, quantity))
+        console.log(id, title, price, quantity)
     }
 
     useEffect(() => {
@@ -32,7 +32,10 @@ function Menu() {
                 menu.map((menuItem) => {
                     return (
                         <div key={menuItem.id} className="menu-container">
-                            <button className="add" onClick={() => addItem(menuItem)}>
+                            <button
+                                className="add"
+                                onClick={() => addItem(menuItem.id, menuItem.title, menuItem.price, 1)}
+                            >
                                 <MdAddCircle />
                             </button>
                             <h3 className="coffee">{menuItem.title}</h3>

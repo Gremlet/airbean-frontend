@@ -1,3 +1,7 @@
+$brown: #2f2926;
+$dark-green: #0e927d;
+$pink: #f3e4e1;
+$orange: #e5674e;
 .cart {
     .circle2 {
         position: absolute;
@@ -18,5 +22,90 @@
         top: 75px;
         right: 17px;
         border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+
+        .cart-title {
+            text-align: center;
+        }
+
+        .cart-item {
+            padding: 0px 16px 0 16px;
+            margin-top: 10px;
+            display: grid;
+            grid-auto-rows: 20px 30px 20px;
+            grid-auto-columns: auto auto 36px;
+            grid-template-areas:
+                'increase increase increase'
+                'title remove quantity'
+                'price price decrease';
+
+            .increase {
+                grid-area: increase;
+                justify-self: end;
+                border: none;
+                background: none;
+                font-size: 1.2em;
+                padding: 0px 8px 0px 8px;
+            }
+
+            .cart-item-title {
+                grid-area: title;
+                align-self: center;
+                margin: 0;
+            }
+
+            .cart-item-quantity {
+                grid-area: quantity;
+                justify-self: center;
+                align-self: center;
+                font-weight: 700;
+            }
+
+            .cart-price {
+                grid-area: price;
+                margin: 0;
+                font-size: 0.75em;
+            }
+            .decrease {
+                grid-area: decrease;
+                justify-self: end;
+                border: none;
+                background: none;
+                font-size: 1.2em;
+                padding: 0px 8px 0px 8px;
+            }
+            .remove {
+                grid-area: remove;
+                justify-self: end;
+                border: none;
+                background: none;
+                font-size: 1.2em;
+                align-self: center;
+                margin-top: 5px;
+            }
+        }
+        .cart-total {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .pay {
+            text-align: center;
+
+            .pay-button {
+                font-family: 'PT Serif', serif;
+                font-size: 1.5em;
+
+                border: none;
+                border-radius: 50px;
+                padding: 10px;
+                background-color: $brown;
+                color: white;
+                width: 80%;
+                margin-bottom: 30px;
+            }
+        }
     }
 }
