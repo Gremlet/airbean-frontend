@@ -4,6 +4,8 @@ import '../scss/app.scss'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
+import ReactTooltip from 'react-tooltip'
+
 function Header() {
     const history = useHistory()
     const currentUser = useSelector((state) => {
@@ -21,11 +23,10 @@ function Header() {
     }
 
     function handleClick() {
-        if (isEmpty(currentUser) || currentUser.loggedIn === false) {
-            // remember to change this alert. Alerts are shitty.
-            alert('Please log in!')
-        } else {
+        if (!isEmpty(currentUser) || currentUser.loggedIn === true) {
             history.push('/nav')
+        } else {
+            console.log('not logged in')
         }
     }
     return (
@@ -35,11 +36,12 @@ function Header() {
             <svg className="circle" height="80" width="80">
                 <circle cx="40" cy="40" r="24" fill="white" />
             </svg>
-            <div className="menu-icon" onClick={handleClick}>
+            <div className="menu-icon" onClick={handleClick} data-tip="Please log in first!">
                 <h1>
                     <MdMenu />
                 </h1>
             </div>
+            {!currentUser.loggedIn && <ReactTooltip />}
         </div>
     )
 }
