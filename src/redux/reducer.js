@@ -2,6 +2,7 @@ const initialState = {
     currentUser: {},
     cart: [],
     total: 0,
+    discount: 0,
 }
 
 const userReducer = (state = initialState, action) => {
@@ -69,6 +70,64 @@ const userReducer = (state = initialState, action) => {
                 cart: remainingItems,
                 total: newTotal,
             }
+
+        case 'CHECK_DISCOUNT':
+            let bryggkaffe = state.cart.find((item) => item.id === 1)
+            let bakelse = state.cart.find((item) => item.id === 7)
+
+            if (bryggkaffe && bakelse) {
+                let discount = 21
+
+                return {
+                    ...state,
+                    cart: [...state.cart],
+                    total: state.total - discount,
+                    discount: 21,
+                }
+            } else {
+                return {
+                    ...state,
+                    cart: [...state.cart],
+                    total: state.total,
+                }
+            }
+
+        // case 'CHECK_DISCOUNT':
+        //     let bryggkaffe = state.cart.find((item) => item.id === 1)
+        //     let bakelse = state.cart.find((item) => item.id === 7)
+
+        //     if (bryggkaffe && bakelse && bryggkaffe.quantity === bakelse.quantity) {
+        //         let discount = 21 * bryggkaffe.quantity
+        //         let discountedTotal = state.total - discount
+
+        //         return {
+        //             ...state,
+        //             discount: discount,
+        //             total: discountedTotal,
+        //         }
+        //     } else if (bryggkaffe && bakelse && bryggkaffe.quantity > bakelse.quantity) {
+        //         let discount = 21 * bakelse.quantity
+        //         let discountedTotal = state.total - discount
+        //         return {
+        //             ...state,
+        //             discount: discount,
+        //             total: discountedTotal,
+        //         }
+        //     } else if (bryggkaffe && bakelse && bryggkaffe.quantity < bakelse.quantity) {
+        //         let discount = 21 * bryggkaffe.quantity
+        //         let discountedTotal = state.total - discount
+        //         return {
+        //             ...state,
+        //             discount: discount,
+        //             total: discountedTotal,
+        //         }
+        //     } else {
+        //         return {
+        //             ...state,
+        //             discount: 0,
+        //             total: state.total,
+        //         }
+        //     }
 
         default:
             return state

@@ -13,6 +13,9 @@ $orange: #e5674e;
         position: absolute;
         top: -4px;
         right: 29px;
+        &:hover {
+            cursor: pointer;
+        }
     }
     .cart-card {
         width: 340px;
@@ -106,6 +109,37 @@ $orange: #e5674e;
                 width: 80%;
                 margin-bottom: 30px;
             }
+        }
+    }
+    .pay-now {
+        width: 340px;
+        height: 650px;
+        background-color: $brown;
+        color: rgba(255, 255, 255, 0.904);
+        position: absolute;
+        top: 75px;
+        right: 17px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+    }
+    .go {
+        border: none;
+        background: $orange;
+        padding: 10px;
+        width: 60%;
+        border-radius: 50px;
+        font-family: 'PT Serif', serif;
+        font-size: 1.2em;
+        font-weight: 700;
+        color: white;
+
+        &:hover {
+            background-color: #e45539;
+            cursor: pointer;
         }
     }
 }

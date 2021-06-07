@@ -46,5 +46,8 @@ p {
         position: absolute;
         top: 2px;
         left: 29px;
+        &:hover {
+            cursor: pointer;
+        }
     }
 }

@@ -32,3 +32,9 @@ export const removeItem = (id, quantity, price) => {
         payload: { id, quantity, price },
     }
 }
+
+export const checkDiscount = () => {
+    return {
+        type: 'CHECK_DISCOUNT',
+    }
+}

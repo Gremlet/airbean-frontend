@@ -1,5 +1,6 @@
 import { MdShoppingCart } from 'react-icons/md'
 import '../scss/cart.scss'
+import logo from '../assets/airbean-logo-lg.svg'
 import { useSelector } from 'react-redux'
 import Badge from '@material-ui/core/Badge'
 import { useEffect, useState } from 'react'
@@ -16,10 +17,15 @@ function Cart() {
         return state.total
     })
 
+    const discount = useSelector((state) => {
+        return state.discount
+    })
+
     const dispatch = useDispatch()
 
     const [showCart, setShowCart] = useState(false)
     const [cartLength, setCartLength] = useState(0)
+    const [orderArray, setOrderArray] = useState([])
 
     const toggleCart = () => {
         setShowCart(!showCart)
@@ -35,6 +41,25 @@ function Cart() {
 
     function deleteItem(id, quantity, price) {
         dispatch(removeItem(id, quantity, price))
+    }
+
+    function takeMyMoney() {
+        dispatch({ type: 'CHECK_DISCOUNT' })
+        let orderArr = []
+        for (let i = 0; i < cart.length; i++) {
+            for (let j = 0; j < cart[i].quantity; j++) {
+                orderArr.push(cart[i].id)
+            }
+        }
+        console.log(orderArr)
+        setOrderArray(orderArr)
+    }
+
+    function sendOrder() {
+        console.log('I am winning!')
+        // Put the fetch here
+
+        // also remember to empty cart!
     }
 
     useEffect(() => {
@@ -104,9 +129,27 @@ function Cart() {
                     )}
                     {cart.length > 0 && (
                         <div className="pay">
-                            <button className="pay-button">Take my money!</button>
+                            <button className="pay-button" onClick={takeMyMoney}>
+                                Take my money!
+                            </button>
                         </div>
                     )}
+                </div>
+            )}
+            {orderArray.length > 0 && (
+                <div className="pay-now">
+                    <img src={logo} alt="airbean logo" />
+                    <h1>Soon... coffee!</h1>
+                    {discount > 0 && (
+                        <p>
+                            Congrats! You unlocked the Gothenburg 400 discount! We've taken <strong>21 kr</strong> off
+                            your order
+                        </p>
+                    )}
+                    <h1>Total to pay: {cartTotal} kr</h1>
+                    <button className="go" onClick={sendOrder}>
+                        Let's go!
+                    </button>
                 </div>
             )}
         </div>
