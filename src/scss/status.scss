@@ -1,0 +1,40 @@
+$brown: #2f2926;
+$dark-green: #0e927d;
+$pink: #f3e4e1;
+$orange: #e5674e;
+
+.order-status {
+    width: 375px;
+    min-height: 690px;
+    background-color: $orange;
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    color: white;
+
+    .top {
+        .order-number {
+            color: rgba(255, 255, 255, 0.548);
+        }
+    }
+
+    .cool {
+        border: none;
+        font-family: 'PT Serif', serif;
+        font-size: 1.2em;
+        font-weight: 700;
+        border-radius: 50px;
+        padding: 12px;
+        width: 36%;
+
+        &:hover {
+            background-color: $pink;
+            cursor: pointer;
+        }
+    }
+}

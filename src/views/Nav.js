@@ -35,7 +35,9 @@ function Nav(props) {
                     <h1>My Profile</h1>
                 </Link>
                 <hr />
-                <h1>Order Status</h1>
+                <Link to="/status" className="link-text" onClick={() => changeColor('#2f2926')}>
+                    <h1>Order Status</h1>
+                </Link>
             </div>
         </div>
     )

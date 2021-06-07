@@ -8,6 +8,7 @@ import Profile from './views/Profile'
 import { useState } from 'react'
 import About from './views/About'
 import Menu from './views/Menu'
+import OrderStatus from './views/OrderStatus'
 
 function App() {
     let [bgColor, setBgColor] = useState('#2f2926')
@@ -32,6 +33,9 @@ function App() {
                 </Route>
                 <Route path="/menu">
                     <Menu />
+                </Route>
+                <Route path="/status">
+                    <OrderStatus />
                 </Route>
             </Switch>
         </div>

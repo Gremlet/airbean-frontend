@@ -3,6 +3,7 @@ const initialState = {
     cart: [],
     total: 0,
     discount: 0,
+    latestOrder: {},
 }
 
 const userReducer = (state = initialState, action) => {
@@ -90,6 +91,18 @@ const userReducer = (state = initialState, action) => {
                     cart: [...state.cart],
                     total: state.total,
                 }
+            }
+
+        case 'GET_LATEST_ORDER':
+            return {
+                ...state,
+                latestOrder: action.payload,
+            }
+
+        case 'EMPTY_CART':
+            return {
+                ...state,
+                cart: [],
             }
 
         // case 'CHECK_DISCOUNT':

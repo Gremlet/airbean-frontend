@@ -9,7 +9,11 @@ function Profile() {
         return state.currentUser
     })
 
-    /**Could maybe have discounts here and subtract them from total spent */
+    /**Could maybe have discounts here and subtract them from total spent
+     *
+     * also, some conditional rendering or error handling in case user
+     * has no orders
+     */
 
     let [history, setHistory] = useState(null)
     let [totalSpent, setTotalSpent] = useState(0)
