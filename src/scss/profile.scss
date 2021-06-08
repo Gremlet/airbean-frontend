@@ -52,6 +52,15 @@ $orange: #e5674e;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.322);
             }
         }
+
+        .discounts {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75em;
+            font-weight: 700;
+            color: $orange;
+            margin-top: 10px;
+        }
         .total {
             display: flex;
             justify-content: space-between;

@@ -15,8 +15,9 @@ function Profile() {
      * has no orders
      */
 
-    let [history, setHistory] = useState(null)
+    let [history, setHistory] = useState([])
     let [totalSpent, setTotalSpent] = useState(0)
+    let [totalDiscounts, setTotalDiscounts] = useState(0)
 
     useEffect(() => {
         async function fetchHistory() {
@@ -35,11 +36,26 @@ function Profile() {
         fetchHistory()
     }, [currentUser.userID])
 
+    useEffect(() => {
+        function getDiscounts() {
+            let discounts = 0
+            let discountedOrders = history.filter((order) => order.discount > 0)
+            console.log(discountedOrders)
+            for (let order of discountedOrders) {
+                discounts = discounts + order.discount
+            }
+            console.log('discounts', discounts)
+            setTotalDiscounts(discounts)
+        }
+        getDiscounts()
+    }, [history, setTotalDiscounts])
+
     return (
         <div className="profile">
             <img src={avatar} alt="profile img" />
             <h1 className="username">{currentUser.fullname}</h1>
             <p className="email">{currentUser.email}</p>
+
             <div className="order-history">
                 <h2>Order history</h2>
                 {history &&
@@ -54,9 +70,15 @@ function Profile() {
                             </div>
                         )
                     })}
+                {totalDiscounts > 0 && (
+                    <div className="discounts">
+                        <p>Total discounts</p>
+                        <p>{totalDiscounts} kr</p>
+                    </div>
+                )}
                 <div className="total">
                     <p className="spent">Total spent</p>
-                    <p className="grandtotal">{totalSpent} kr</p>
+                    <p className="grandtotal">{totalSpent - totalDiscounts} kr</p>
                 </div>
             </div>
         </div>
