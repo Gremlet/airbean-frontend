@@ -9,6 +9,7 @@ function Login() {
     let [username, setUsername] = useState('')
     let [password, setPassword] = useState('')
     let [isLoggedIn, setIsLoggedIn] = useState(null)
+    let [serverError, setServerError] = useState(false)
 
     const handleUsername = (event) => setUsername(event.target.value)
     const handlePassword = (event) => setPassword(event.target.value)
@@ -19,16 +20,23 @@ function Login() {
     async function userLogin(event) {
         event.preventDefault()
         console.log(username, password)
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: username, password: password }),
+
+        try {
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: username, password: password }),
+            }
+            const response = await fetch('http://localhost:8080/api/login', requestOptions)
+            const data = await response.json()
+            dispatch(addUser(data))
+            console.log(data)
+            setIsLoggedIn(data.loggedIn)
+            setServerError(false)
+        } catch (error) {
+            console.log("It's dead, Jim")
+            setServerError(true)
         }
-        const response = await fetch('http://localhost:8080/api/login', requestOptions)
-        const data = await response.json()
-        dispatch(addUser(data))
-        console.log(data)
-        setIsLoggedIn(data.loggedIn)
     }
 
     useEffect(() => {
@@ -60,6 +68,7 @@ function Login() {
                 ) : (
                     <p></p>
                 )}
+                {serverError && <p className="errMsg">Eek! Something went wrong on our end. Please try again.</p>}
             </div>
         </div>
     )

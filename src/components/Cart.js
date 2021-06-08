@@ -145,7 +145,7 @@ function Cart() {
                     )}
                     {cart.length > 0 && (
                         <div className="pay">
-                            <button className="pay-button" onClick={takeMyMoney}>
+                            <button className="pay-button" onClick={() => takeMyMoney()}>
                                 Take my money!
                             </button>
                         </div>
@@ -158,8 +158,8 @@ function Cart() {
                     <h1>Soon... coffee!</h1>
                     {discount > 0 && (
                         <p>
-                            Congrats! You unlocked the Gothenburg 400 discount! We've taken <strong>21 kr</strong> off
-                            your order
+                            Congrats! You unlocked the Gothenburg 400 discount! We've taken{' '}
+                            <strong>{discount} kr</strong> off your order
                         </p>
                     )}
                     <h1>Total to pay: {cartTotal} kr</h1>

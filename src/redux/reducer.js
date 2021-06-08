@@ -6,7 +6,7 @@ const initialState = {
     latestOrder: {},
 }
 
-const userReducer = (state = initialState, action) => {
+const airbeanReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_USER':
             return {
@@ -76,14 +76,32 @@ const userReducer = (state = initialState, action) => {
             let bryggkaffe = state.cart.find((item) => item.id === 1)
             let bakelse = state.cart.find((item) => item.id === 7)
 
-            if (bryggkaffe && bakelse) {
-                let discount = 21
+            if (bryggkaffe && bakelse && bryggkaffe.quantity === bakelse.quantity) {
+                let discount = 21 * bryggkaffe.quantity
 
                 return {
                     ...state,
                     cart: [...state.cart],
                     total: state.total - discount,
-                    discount: 21,
+                    discount: discount,
+                }
+            }
+            if (bryggkaffe && bakelse && bryggkaffe.quantity > bakelse.quantity) {
+                let discount = 21 * bakelse.quantity
+                return {
+                    ...state,
+                    cart: [...state.cart],
+                    total: state.total - discount,
+                    discount: discount,
+                }
+            }
+            if (bryggkaffe && bakelse && bryggkaffe.quantity < bakelse.quantity) {
+                let discount = 21 * bryggkaffe.quantity
+                return {
+                    ...state,
+                    cart: [...state.cart],
+                    total: state.total - discount,
+                    discount: discount,
                 }
             } else {
                 return {
@@ -103,6 +121,8 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 cart: [],
+                total: 0,
+                discount: 0,
             }
 
         // case 'CHECK_DISCOUNT':
@@ -155,4 +175,4 @@ const userReducer = (state = initialState, action) => {
  *
  * Also need  INCREMENT_ITEM and DECREMENT_ITEM and REMOVE_ITEM*/
 
-export default userReducer
+export default airbeanReducer

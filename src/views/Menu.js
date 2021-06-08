@@ -1,6 +1,7 @@
 import '../scss/menu.scss'
 import { MdAddCircle } from 'react-icons/md'
 import footer from '../assets/footer.svg'
+import oops from '../assets/oops.svg'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../redux/actions'
@@ -8,6 +9,8 @@ import Cart from '../components/Cart'
 
 function Menu() {
     const [menu, setMenu] = useState(() => [])
+    const [menuLoaded, setMenuLoaded] = useState(false)
+
     const dispatch = useDispatch()
 
     function addItem(id, title, price, quantity) {
@@ -17,10 +20,16 @@ function Menu() {
 
     useEffect(() => {
         async function fetchMenu() {
-            const response = await fetch('http://localhost:8080/api/coffee')
-            const data = await response.json()
-            console.log(data)
-            setMenu(data)
+            try {
+                const response = await fetch('http://localhost:8080/api/coffee')
+                const data = await response.json()
+                console.log(data)
+                setMenu(data)
+                setMenuLoaded(true)
+            } catch (error) {
+                setMenuLoaded(false)
+                console.log('is a heckin error')
+            }
         }
         fetchMenu()
     }, [])
@@ -28,7 +37,7 @@ function Menu() {
         <div className="menu">
             <Cart />
             <h1 className="menu-title">Menu</h1>
-            {menu &&
+            {menuLoaded &&
                 menu.map((menuItem) => {
                     return (
                         <div key={menuItem.id} className="menu-container">
@@ -44,6 +53,12 @@ function Menu() {
                         </div>
                     )
                 })}
+            {!menuLoaded && (
+                <div className="whoops">
+                    <h3>Aw shucks! Something went sideways... please try again!</h3>
+                    <img src={oops} alt="spilled coffee" />
+                </div>
+            )}
 
             <img className="footer" src={footer} alt="footer-img" />
         </div>
