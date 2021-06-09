@@ -1,42 +1,44 @@
 import { useSelector } from 'react-redux'
 import '../scss/status.scss'
 import drone from '../assets/drone.svg'
+import delivered from '../assets/delivered.svg'
+import oops from '../assets/oops.svg'
 import { useEffect, useState } from 'react'
 import * as dayjs from 'dayjs'
 import { useHistory } from 'react-router'
 
 function OrderStatus() {
-    const latestOrder = useSelector((state) => {
-        return state.latestOrder
+    const currentUser = useSelector((state) => {
+        return state.currentUser
     })
 
     const history = useHistory()
 
     const [status, setStatus] = useState('')
-
-    // if status is !delivered then coffee on the way
-
-    // gotta add some conditional rendering in case there's no order
+    const [latestOrder, setLatestOrder] = useState({})
+    const [serverError, setServerError] = useState(false)
 
     useEffect(() => {
-        function getStatus() {
-            let coffeeStatus = ''
-            if (dayjs(latestOrder.ETA) < dayjs()) {
-                coffeeStatus = 'Delivered'
+        async function getOrders() {
+            try {
+                const response = await fetch(`http://localhost:8080/api/order/${currentUser.userID}`)
+                const data = await response.json()
+                console.log('Data:', data)
+
+                let sorted = data.sort(function (a, b) {
+                    return dayjs(b.ETA) - dayjs(a.ETA)
+                })
+
+                setServerError(false)
+                setLatestOrder(sorted[0])
+                setStatus(sorted[0].status)
+            } catch (error) {
+                console.log('Task failed successfully')
+                setServerError(true)
             }
-            if (dayjs(latestOrder.ETA) > dayjs()) {
-                let diff = dayjs(latestOrder.ETA).diff(dayjs(), 'm') + 1
-                if (diff === 1) {
-                    coffeeStatus = `Coffee drone landing in ${diff} minute`
-                } else {
-                    coffeeStatus = `Coffee drone landing in ${diff} minutes`
-                }
-            }
-            setStatus(coffeeStatus)
         }
-        getStatus()
-        console.log(status)
-    })
+        getOrders()
+    }, [currentUser])
 
     const returnToNav = () => {
         history.push('/nav')
@@ -44,26 +46,43 @@ function OrderStatus() {
 
     return (
         <div className="order-status">
-            <div className="top">
-                <p className="orderNumber">
-                    Order number <strong>#{latestOrder.orderNumber}</strong>
-                </p>
-                <img src={drone} alt="airbean drone" className="drone" />
-            </div>
-            {status === 'Delivered' ? (
-                <div className="middle">
-                    <h1>Delivered</h1>
-                </div>
-            ) : (
-                <div className="middle">
-                    <h1>Your order is on the way!</h1>
-                    <p>{status}</p>
+            {!serverError && (
+                <div className="main-content">
+                    <div className="top">
+                        <p className="orderNumber">
+                            Order number <strong>#{latestOrder.orderNumber}</strong>
+                        </p>
+                        {status === 'Delivered' ? (
+                            <img src={delivered} alt="drone and coffee cup" className="drone" />
+                        ) : (
+                            <img src={drone} alt="airbean drone" className="drone" />
+                        )}
+                    </div>
+                    {status === 'Delivered' ? (
+                        <div className="middle">
+                            <h3>
+                                Your last order was delivered on {dayjs(latestOrder.ETA).format('MMM D')} at{' '}
+                                {dayjs(latestOrder.ETA).format('h:mm a')}
+                            </h3>
+                        </div>
+                    ) : (
+                        <div className="middle">
+                            <h1>Your order is on the way!</h1>
+                            <p>{status}</p>
+                        </div>
+                    )}
+
+                    <button className="cool" onClick={returnToNav}>
+                        Ok, cool!
+                    </button>
                 </div>
             )}
-
-            <button className="cool" onClick={returnToNav}>
-                Ok, cool!
-            </button>
+            {serverError && (
+                <div className="whoops">
+                    <h3>Aw, shucks! Something went sideways... please try again!</h3>
+                    <img src={oops} alt="spilled coffee" />
+                </div>
+            )}
         </div>
     )
 }

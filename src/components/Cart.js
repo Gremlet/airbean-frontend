@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import Badge from '@material-ui/core/Badge'
 import { useEffect, useState } from 'react'
 import { MdKeyboardArrowUp, MdKeyboardArrowDown, MdDelete } from 'react-icons/md'
-import { increment, decrement, removeItem, getLatestOrder, emptyCart } from '../redux/actions'
+import { increment, decrement, removeItem, emptyCart } from '../redux/actions'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 
@@ -71,7 +71,7 @@ function Cart() {
         const response = await fetch('http://localhost:8080/api/order', requestOptions)
         const data = await response.json()
         console.log(data)
-        dispatch(getLatestOrder(data))
+
         dispatch(emptyCart())
         history.push('/status')
 

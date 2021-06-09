@@ -3,7 +3,6 @@ const initialState = {
     cart: [],
     total: 0,
     discount: 0,
-    latestOrder: {},
 }
 
 const airbeanReducer = (state = initialState, action) => {
@@ -111,12 +110,6 @@ const airbeanReducer = (state = initialState, action) => {
                 }
             }
 
-        case 'GET_LATEST_ORDER':
-            return {
-                ...state,
-                latestOrder: action.payload,
-            }
-
         case 'EMPTY_CART':
             return {
                 ...state,
@@ -125,43 +118,6 @@ const airbeanReducer = (state = initialState, action) => {
                 discount: 0,
             }
 
-        // case 'CHECK_DISCOUNT':
-        //     let bryggkaffe = state.cart.find((item) => item.id === 1)
-        //     let bakelse = state.cart.find((item) => item.id === 7)
-
-        //     if (bryggkaffe && bakelse && bryggkaffe.quantity === bakelse.quantity) {
-        //         let discount = 21 * bryggkaffe.quantity
-        //         let discountedTotal = state.total - discount
-
-        //         return {
-        //             ...state,
-        //             discount: discount,
-        //             total: discountedTotal,
-        //         }
-        //     } else if (bryggkaffe && bakelse && bryggkaffe.quantity > bakelse.quantity) {
-        //         let discount = 21 * bakelse.quantity
-        //         let discountedTotal = state.total - discount
-        //         return {
-        //             ...state,
-        //             discount: discount,
-        //             total: discountedTotal,
-        //         }
-        //     } else if (bryggkaffe && bakelse && bryggkaffe.quantity < bakelse.quantity) {
-        //         let discount = 21 * bryggkaffe.quantity
-        //         let discountedTotal = state.total - discount
-        //         return {
-        //             ...state,
-        //             discount: discount,
-        //             total: discountedTotal,
-        //         }
-        //     } else {
-        //         return {
-        //             ...state,
-        //             discount: 0,
-        //             total: state.total,
-        //         }
-        //     }
-
         default:
             return state
     }
@@ -169,9 +125,9 @@ const airbeanReducer = (state = initialState, action) => {
 
 /** APPLY_DISCOUNT
  *
- * if cart includes 1 and 7 && if 1.qty === 7.qty discount === 21 * qty =>
- * if 1.qty > 7.qty discount === 21 * 7.qty
- * if 7.qty > 1.qty discout === 21 * 1.qty
+ * if cart includes 1 and 7 && if 1.qty === 7.qty discount = 21 * qty
+ * if 1.qty > 7.qty discount = 21 * 7.qty
+ * if 7.qty > 1.qty discout = 21 * 1.qty
  *
  * Also need  INCREMENT_ITEM and DECREMENT_ITEM and REMOVE_ITEM*/
 

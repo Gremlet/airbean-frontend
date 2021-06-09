@@ -112,13 +112,14 @@ $orange: #e5674e;
         }
     }
     .pay-now {
-        width: 340px;
-        height: 650px;
+        width: 350px;
+        height: 744px;
         background-color: $brown;
         color: rgba(255, 255, 255, 0.904);
         position: absolute;
-        top: 75px;
-        right: 17px;
+        z-index: 1;
+        top: 16px;
+        right: 12.5px;
         border-radius: 5px;
         display: flex;
         justify-content: center;

@@ -39,13 +39,6 @@ export const checkDiscount = () => {
     }
 }
 
-export const getLatestOrder = (order) => {
-    return {
-        type: 'GET_LATEST_ORDER',
-        payload: order,
-    }
-}
-
 export const emptyCart = () => {
     return {
         type: 'EMPTY_CART',

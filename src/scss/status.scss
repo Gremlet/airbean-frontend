@@ -17,24 +17,47 @@ $orange: #e5674e;
     text-align: center;
     color: white;
 
-    .top {
-        .order-number {
-            color: rgba(255, 255, 255, 0.548);
+    .main-content {
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        .top {
+            .order-number {
+                color: rgba(255, 255, 255, 0.548);
+            }
+        }
+        .middle {
+            width: 80%;
+        }
+
+        .cool {
+            border: none;
+            font-family: 'PT Serif', serif;
+            font-size: 1.2em;
+            font-weight: 700;
+            border-radius: 50px;
+            padding: 12px;
+            width: 36%;
+
+            &:hover {
+                background-color: $pink;
+                cursor: pointer;
+            }
         }
     }
+    .whoops {
+        width: 100%;
+        height: 350px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
 
-    .cool {
-        border: none;
-        font-family: 'PT Serif', serif;
-        font-size: 1.2em;
-        font-weight: 700;
-        border-radius: 50px;
-        padding: 12px;
-        width: 36%;
-
-        &:hover {
-            background-color: $pink;
-            cursor: pointer;
+        > h3 {
+            width: 70%;
         }
     }
 }
