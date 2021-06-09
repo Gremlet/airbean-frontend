@@ -13,6 +13,15 @@ const airbeanReducer = (state = initialState, action) => {
                 currentUser: action.payload,
             }
 
+        case 'LOGOUT':
+            return {
+                ...state,
+                currentUser: {},
+                cart: [],
+                total: 0,
+                discount: 0,
+            }
+
         case 'ADD_TO_CART':
             let addedItem = action.payload
             let existingItem = state.cart.find((item) => item.id === addedItem.id)

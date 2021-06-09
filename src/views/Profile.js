@@ -1,9 +1,11 @@
 import '../scss/profile.scss'
 import avatar from '../assets/avatar.svg'
 import oops from '../assets/oops.svg'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import * as dayjs from 'dayjs'
+import { logout } from '../redux/actions'
+import { useHistory } from 'react-router'
 
 function Profile() {
     const currentUser = useSelector((state) => {
@@ -14,6 +16,9 @@ function Profile() {
     let [historyLoaded, setHistoryLoaded] = useState(false)
     let [totalSpent, setTotalSpent] = useState(0)
     let [totalDiscounts, setTotalDiscounts] = useState(0)
+
+    const dispatch = useDispatch()
+    const routeHistory = useHistory()
 
     useEffect(() => {
         async function fetchHistory() {
@@ -52,11 +57,19 @@ function Profile() {
         getDiscounts()
     }, [history, setTotalDiscounts])
 
+    function logoutUser() {
+        dispatch(logout())
+        routeHistory.push('/')
+    }
+
     return (
         <div className="profile">
             <img src={avatar} alt="profile img" />
             <h1 className="username">{currentUser.fullname}</h1>
             <p className="email">{currentUser.email}</p>
+            <button className="logout" onClick={logoutUser}>
+                Log out
+            </button>
 
             {historyLoaded && (
                 <div className="order-history">

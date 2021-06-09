@@ -83,7 +83,7 @@ function OrderStatus() {
                     <h3>Nothing to see here!</h3>
                     <img src={oops} alt="spilled coffee" />
                     <button className="cool" onClick={returnToNav}>
-                        Ok, cool!
+                        Go back
                     </button>
                 </div>
             )}

@@ -5,6 +5,12 @@ export const addUser = (user) => {
     }
 }
 
+export const logout = () => {
+    return {
+        type: 'LOGOUT',
+    }
+}
+
 export const addToCart = (id, title, price, quantity) => {
     return {
         type: 'ADD_TO_CART',

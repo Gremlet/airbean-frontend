@@ -14,6 +14,22 @@ $orange: #e5674e;
         color: rgba(255, 255, 255, 0.8);
         margin-top: 5px;
     }
+    .logout {
+        background: none;
+        border: 1px solid $dark-green;
+        border-radius: 20px;
+        color: $dark-green;
+        padding: 5px 8px;
+        font-family: 'Work Sans', sans-serif;
+        font-size: 0.75em;
+        font-weight: 700;
+
+        &:hover {
+            border: 1px solid $orange;
+            color: $orange;
+            cursor: pointer;
+        }
+    }
 
     .order-history {
         text-align: left;
