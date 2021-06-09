@@ -17,6 +17,7 @@ function OrderStatus() {
     const [status, setStatus] = useState('')
     const [latestOrder, setLatestOrder] = useState({})
     const [serverError, setServerError] = useState(false)
+    const [orderExists, setOrderExists] = useState(false)
 
     useEffect(() => {
         async function getOrders() {
@@ -32,6 +33,7 @@ function OrderStatus() {
                 setServerError(false)
                 setLatestOrder(sorted[0])
                 setStatus(sorted[0].status)
+                setOrderExists(true)
             } catch (error) {
                 console.log('Task failed successfully')
                 setServerError(true)
@@ -46,7 +48,7 @@ function OrderStatus() {
 
     return (
         <div className="order-status">
-            {!serverError && (
+            {!serverError && orderExists ? (
                 <div className="main-content">
                     <div className="top">
                         <p className="orderNumber">
@@ -76,11 +78,13 @@ function OrderStatus() {
                         Ok, cool!
                     </button>
                 </div>
-            )}
-            {serverError && (
+            ) : (
                 <div className="whoops">
-                    <h3>Aw, shucks! Something went sideways... please try again!</h3>
+                    <h3>Nothing to see here!</h3>
                     <img src={oops} alt="spilled coffee" />
+                    <button className="cool" onClick={returnToNav}>
+                        Ok, cool!
+                    </button>
                 </div>
             )}
         </div>
