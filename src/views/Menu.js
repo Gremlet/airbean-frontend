@@ -15,7 +15,6 @@ function Menu() {
 
     function addItem(id, title, price, quantity) {
         dispatch(addToCart(id, title, price, quantity))
-        console.log(id, title, price, quantity)
     }
 
     useEffect(() => {
