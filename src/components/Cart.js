@@ -8,6 +8,7 @@ import { MdKeyboardArrowUp, MdKeyboardArrowDown, MdDelete } from 'react-icons/md
 import { increment, decrement, removeItem, emptyCart } from '../redux/actions'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
+import Confetti from 'react-confetti'
 
 function Cart() {
     const cart = useSelector((state) => {
@@ -158,6 +159,14 @@ function Cart() {
                     <h1>Soon... coffee!</h1>
                     {discount > 0 && (
                         <p>
+                            <Confetti
+                                width="350"
+                                height="744"
+                                opacity="0.6"
+                                numberOfPieces="100"
+                                recycle="false"
+                                confettiSource={{ x: 175, y: 360, w: 20, h: 20 }}
+                            />
                             Congrats! You unlocked the Gothenburg 400 discount! We've taken{' '}
                             <strong>{discount} kr</strong> off your order
                         </p>
