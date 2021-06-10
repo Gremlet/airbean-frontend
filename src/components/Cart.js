@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import Badge from '@material-ui/core/Badge'
 import { useEffect, useState } from 'react'
 import { MdKeyboardArrowUp, MdKeyboardArrowDown, MdDelete } from 'react-icons/md'
-import { increment, decrement, removeItem, emptyCart } from '../redux/actions'
+import { increment, decrement, removeItem, emptyCart, checkDiscount } from '../redux/actions'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import Confetti from 'react-confetti'
@@ -51,7 +51,7 @@ function Cart() {
     }
 
     function takeMyMoney() {
-        dispatch({ type: 'CHECK_DISCOUNT' })
+        dispatch(checkDiscount())
         let orderArr = []
         for (let i = 0; i < cart.length; i++) {
             for (let j = 0; j < cart[i].quantity; j++) {
@@ -78,6 +78,13 @@ function Cart() {
 
         // also remember to empty cart!
     }
+
+    useEffect(() => {
+        function discountCheck() {
+            dispatch(checkDiscount())
+        }
+        discountCheck()
+    }, [cartTotal, dispatch])
 
     useEffect(() => {
         function getCartLength() {
@@ -140,8 +147,10 @@ function Cart() {
                     })}
                     {cart.length > 0 && (
                         <div className="cart-total">
+                            {discount > 0 && <p className="c-discount">Discount</p>}
+                            {discount > 0 && <p className="c-discamount">{discount} kr</p>}
                             <h2 className="c-total">Total</h2>
-                            <h2 className="c-amount">{cartTotal} kr</h2>
+                            <h2 className="c-amount">{cartTotal - discount} kr</h2>
                         </div>
                     )}
                     {cart.length > 0 && (
@@ -167,11 +176,11 @@ function Cart() {
                                 recycle="false"
                                 confettiSource={{ x: 175, y: 360, w: 20, h: 20 }}
                             />
-                            Congrats! You unlocked the Gothenburg 400 discount! We've taken{' '}
-                            <strong>{discount} kr</strong> off your order
+                            Congrats! You unlocked the Gothenburg 400 discount! Your discount today is{' '}
+                            <strong>{discount} kr</strong>
                         </p>
                     )}
-                    <h1>Total to pay: {cartTotal} kr</h1>
+                    <h1>Total to pay: {cartTotal - discount} kr</h1>
                     <button className="go" onClick={sendOrder}>
                         Let's go!
                     </button>

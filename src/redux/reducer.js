@@ -90,7 +90,6 @@ const airbeanReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     cart: [...state.cart],
-                    total: state.total - discount,
                     discount: discount,
                 }
             }
@@ -99,7 +98,6 @@ const airbeanReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     cart: [...state.cart],
-                    total: state.total - discount,
                     discount: discount,
                 }
             }
@@ -108,14 +106,13 @@ const airbeanReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     cart: [...state.cart],
-                    total: state.total - discount,
                     discount: discount,
                 }
             } else {
                 return {
                     ...state,
                     cart: [...state.cart],
-                    total: state.total,
+                    discount: 0,
                 }
             }
 
