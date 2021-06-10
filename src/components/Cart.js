@@ -151,6 +151,7 @@ function Cart() {
                             {discount > 0 && <p className="c-discamount">- {discount} kr</p>}
                             <h2 className="c-total">Total</h2>
                             <h2 className="c-amount">{cartTotal - discount} kr</h2>
+                            <p className="including">Inc moms + drone delivery</p>
                         </div>
                     )}
                     {cart.length > 0 && (

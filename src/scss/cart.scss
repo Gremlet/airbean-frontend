@@ -25,6 +25,7 @@
         display: flex;
         flex-direction: column;
         overflow-y: scroll;
+        color: $brown;
 
         .cart-title {
             text-align: center;
@@ -88,11 +89,13 @@
         }
         .cart-total {
             padding: 10px;
+            margin-top: 16px;
             display: grid;
 
             grid-template-areas:
                 'discount discamount'
-                'total totalamount';
+                'total totalamount'
+                'including including';
 
             .c-discount {
                 grid-area: discount;
@@ -110,13 +113,19 @@
             }
             .c-total {
                 grid-area: total;
-                margin: 10px 0px;
+                margin: 10px 0px 0px 0px;
             }
             .c-amount {
                 grid-area: totalamount;
                 margin: 0;
                 justify-self: end;
-                margin: 10px 0px;
+                margin: 10px 0px 0px 0px;
+            }
+            .including {
+                grid-area: including;
+                margin: 0px 0px 16px 0px;
+                align-self: top;
+                font-size: 0.7em;
             }
         }
         .pay {
@@ -125,7 +134,7 @@
             .pay-button {
                 font-family: 'PT Serif', serif;
                 font-size: 1.5em;
-
+                font-weight: 700;
                 border: none;
                 border-radius: 50px;
                 padding: 10px;
@@ -133,6 +142,9 @@
                 color: white;
                 width: 80%;
                 margin-bottom: 30px;
+                &:hover {
+                    background-color: $dark-green;
+                }
             }
         }
     }
@@ -164,7 +176,7 @@
         color: white;
 
         &:hover {
-            background-color: #e45539;
+            background-color: $dark-green;
             cursor: pointer;
         }
     }
