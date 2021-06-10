@@ -148,7 +148,7 @@ function Cart() {
                     {cart.length > 0 && (
                         <div className="cart-total">
                             {discount > 0 && <p className="c-discount">Discount</p>}
-                            {discount > 0 && <p className="c-discamount">{discount} kr</p>}
+                            {discount > 0 && <p className="c-discamount">- {discount} kr</p>}
                             <h2 className="c-total">Total</h2>
                             <h2 className="c-amount">{cartTotal - discount} kr</h2>
                         </div>
@@ -176,7 +176,7 @@ function Cart() {
                                 recycle="false"
                                 confettiSource={{ x: 175, y: 360, w: 20, h: 20 }}
                             />
-                            Congrats! You unlocked the Gothenburg 400 discount! Your discount today is{' '}
+                            Woohoo! You unlocked the Gothenburg 400 discount! Your discount today is{' '}
                             <strong>{discount} kr</strong>
                         </p>
                     )}

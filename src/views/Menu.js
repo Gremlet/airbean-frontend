@@ -6,15 +6,24 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../redux/actions'
 import Cart from '../components/Cart'
+import Snackbar from '@material-ui/core/Snackbar'
+import Alert from '@material-ui/lab/Alert'
 
 function Menu() {
     const [menu, setMenu] = useState(() => [])
     const [menuLoaded, setMenuLoaded] = useState(false)
+    const [open, setOpen] = useState(false)
 
     const dispatch = useDispatch()
 
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') return
+        setOpen(false)
+    }
+
     function addItem(id, title, price, quantity) {
         dispatch(addToCart(id, title, price, quantity))
+        setOpen(true)
     }
 
     useEffect(() => {
@@ -46,6 +55,16 @@ function Menu() {
                             >
                                 <MdAddCircle />
                             </button>
+                            <Snackbar
+                                anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+                                open={open}
+                                autoHideDuration={1500}
+                                onClose={handleClose}
+                            >
+                                <Alert onClose={handleClose} severity="success">
+                                    Added to cart!
+                                </Alert>
+                            </Snackbar>
                             <h3 className="coffee">{menuItem.title}</h3>
                             <p className="desc">{menuItem.desc}</p>
                             <h3 className="coffee-price">{menuItem.price} kr</h3>
