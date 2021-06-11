@@ -53,7 +53,7 @@ function Menu() {
                                 className="add"
                                 onClick={() => addItem(menuItem.id, menuItem.title, menuItem.price, 1)}
                             >
-                                <MdAddCircle />
+                                <MdAddCircle style={{ color: '#2F2926' }} />
                             </button>
                             <Snackbar
                                 anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
