@@ -63,11 +63,7 @@ function Login() {
                     <input type="checkbox" id="gdpr" required />
                     <input type="submit" id="submit" value="Log in!" />
                 </form>
-                {isLoggedIn === false ? (
-                    <p className="errMsg">Wrong username or password. Please try again.</p>
-                ) : (
-                    <p></p>
-                )}
+                {isLoggedIn === false && <p className="errMsg">Wrong username or password. Please try again.</p>}
                 {serverError && <p className="errMsg">Eek! Something went wrong on our end. Please try again.</p>}
             </div>
         </div>
