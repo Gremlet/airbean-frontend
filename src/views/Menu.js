@@ -51,7 +51,7 @@ function Menu() {
     return (
         <div className="menu">
             <Cart showMenu={setMenuVisibility} />
-            <h1 className="menu-title">Menu</h1>
+            <h1 className={`menu-title ${showHideMenu}`}>Menu</h1>
             {menuLoaded &&
                 menu.map((menuItem) => {
                     return (
