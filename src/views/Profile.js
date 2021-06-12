@@ -88,7 +88,7 @@ function Profile() {
                     {totalDiscounts > 0 && (
                         <div className="discounts">
                             <p>Total discounts</p>
-                            <p>{totalDiscounts} kr</p>
+                            <p>- {totalDiscounts} kr</p>
                         </div>
                     )}
                     <div className="total">
