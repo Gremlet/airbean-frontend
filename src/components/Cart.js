@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import Confetti from 'react-confetti'
 
-function Cart() {
+function Cart(props) {
     const cart = useSelector((state) => {
         return state.cart
     })
@@ -36,6 +36,7 @@ function Cart() {
 
     const toggleCart = () => {
         setShowCart(!showCart)
+        props.showMenu('hide')
     }
 
     function increaseQty(id, quantity, price) {
