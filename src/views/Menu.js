@@ -13,6 +13,7 @@ function Menu() {
     const [menu, setMenu] = useState(() => [])
     const [menuLoaded, setMenuLoaded] = useState(false)
     const [open, setOpen] = useState(false)
+    const [showHideMenu, setShowHideMenu] = useState('')
 
     const dispatch = useDispatch()
 
@@ -24,6 +25,12 @@ function Menu() {
     function addItem(id, title, price, quantity) {
         dispatch(addToCart(id, title, price, quantity))
         setOpen(true)
+    }
+
+    function setMenuVisibility() {
+        if (showHideMenu === 'hide') {
+            setShowHideMenu('')
+        } else setShowHideMenu('hide')
     }
 
     useEffect(() => {
@@ -43,12 +50,12 @@ function Menu() {
     }, [])
     return (
         <div className="menu">
-            <Cart />
+            <Cart showMenu={setMenuVisibility} />
             <h1 className="menu-title">Menu</h1>
             {menuLoaded &&
                 menu.map((menuItem) => {
                     return (
-                        <div key={menuItem.id} className="menu-container">
+                        <div key={menuItem.id} className={`menu-container ${showHideMenu}`}>
                             <button
                                 className="add"
                                 onClick={() => addItem(menuItem.id, menuItem.title, menuItem.price, 1)}
