@@ -176,7 +176,7 @@ function Cart(props) {
                                 opacity="0.6"
                                 numberOfPieces="100"
                                 recycle="false"
-                                confettiSource={{ x: 175, y: 360, w: 20, h: 20 }}
+                                confettiSource={{ x: 175, y: 190, w: 20, h: 20 }}
                             />
                             Woohoo! You unlocked the Gothenburg 400 discount! Your discount today is{' '}
                             <strong>{discount} kr</strong>
