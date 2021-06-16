@@ -63,7 +63,7 @@ function OrderStatus() {
                     {status === 'Delivered' ? (
                         <div className="middle">
                             <h3>
-                                Your last order was delivered on {dayjs(latestOrder.ETA).format('MMM D')} at{' '}
+                                Your last order was delivered on {dayjs(latestOrder.ETA).format('MMMM D')} at{' '}
                                 {dayjs(latestOrder.ETA).format('h:mm a')}
                             </h3>
                         </div>
