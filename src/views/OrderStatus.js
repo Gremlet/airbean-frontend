@@ -26,9 +26,7 @@ function OrderStatus() {
                 const data = await response.json()
                 console.log('Data:', data)
 
-                let sorted = data.sort(function (a, b) {
-                    return dayjs(b.ETA) - dayjs(a.ETA)
-                })
+                let sorted = data.reverse()
 
                 setServerError(false)
                 setLatestOrder(sorted[0])
